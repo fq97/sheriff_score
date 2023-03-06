@@ -44,7 +44,7 @@ function App() {
     const [playerData, setData] = useState(defaultData);
     const [playerScores, setScores] = useState(initScores);
 
-    //is it better to do this or just use function names
+    //get data from player forms
     const getData = (playerColor, formData) => {
         //unpack. given a formdata object
         let updatedVals = Object.fromEntries(formData.entries());
@@ -190,33 +190,27 @@ function App() {
 
     }
 
+    //create the player UI displays
+
 
     return (
         <div>
             <h1>Player Scoring</h1>
-            <br />
+                <br />
 
-            <Player color="blue" setter={getData} />
-            <br />
+            {Constants.playerColors.map((color) => {
+                return (
+                    <div key={"player" + color}>
+                        <Player color={color} setter={getData} />
+                        <br />
+                    </div>
+                );
+            })}
 
-            <Player color="red" setter={getData} />
-            <br />
-
-            <Player color="green" setter={getData} />
-            <br />
-
-            <Player color="yellow" setter={getData} />
-            <br />
-
-            <Player color="purple" setter={getData} />
-            <br />
-
-            <Player color="black" setter={getData} />
-            <br />
-
+          
             <ScoreDisplay scores = {playerScores} onClick = {calculateScores} />
         </div>
-  );
+    );
 }
 
 export default App;

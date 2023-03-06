@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+import * as Constants from './constants'
 
 
 
@@ -14,9 +15,6 @@ function Player(props) {
     }
 
 
-    //objecvt.entries.map(() => { stivk the jsx here })
-
-
     //export function calcscore(){} in utils.js file
 
 
@@ -29,42 +27,19 @@ function Player(props) {
             onSubmit={handleSubmit}
         >
 
-            Cheese:
-            <input type="number" name="cheese" />
-            <br />
+            {Object.keys(Constants.itemVals).map((itemName) => {
+                return (
+                    <div key={itemName}>
+                        {itemName}
+                        <input type="number" name={itemName} />
+                        < br />
 
-            Apples:
-            <input type="number" name="apples" />
-            <br />
+                    </div>
 
-            Bread:
-            <input type="number" name="bread" />
-            <br />
-
-            Chickens:
-            <input type="number" name="chickens" />
-            <br />
-
-            Money:
-            <input type="number" name="money" />
-            <br />
+                );
+            })}
 
 
-            Pepper:
-            <input type="number" name="pepper" />
-            <br />
-
-            Mead:
-            <input type="number" name="mead" />
-            <br />
-
-            Silk:
-            <input type="number" name="silk" />
-            <br />
-
-            Crossbows:
-            <input type="number" name="crossbows" />
-            <br />
 
             <input type = "submit" value = "submit"/>
 
