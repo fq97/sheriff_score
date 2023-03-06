@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Player from './player'
 import ScoreDisplay from './scoreDisplay'
-
+import * as Constants from './constants'
 
 //3 types of files
 //data types
@@ -20,56 +20,19 @@ import ScoreDisplay from './scoreDisplay'
 
 
 function App() {
-    //this stuff is ugly. put into a json file?
-    //list of items and their values
-    const itemVals = {
-        cheese: 3,
-        apples: 2,
-        bread: 3,
-        chickens: 4,
-        money: 1,
-        pepper: 6,
-        mead: 7,
-        silk: 8,
-        crossbows: 9
-
-        //support for royal goods
-    };
-
+    //temporary - will be variable later
     const numPlayers = 6;
-
-    const kqBonus = {
-        cheese: {
-            king: 15,
-            queen: 10
-        },
-        apples: {
-            king: 20,
-            queen: 10
-        },
-        bread: {
-            king: 15,
-            queen: 10
-        },
-        chickens: {
-            king: 10,
-            queen: 5
-        }
-    };
-
-    //player colors
-    const playerColors = ["blue", "red", "green", "purple", "yellow", "black"];
 
     //create default values
     let defaultPlayer = {};
-    for (const item of Object.keys(itemVals)) {
+    for (const item of Object.keys(Constants.itemVals)) {
         defaultPlayer[item] = 0;
     }
 
     //create default players and initial scores list
     let defaultData = {};
     let initScores = {};
-    for (const pColor of playerColors) {
+    for (const pColor of Constants.playerColors) {
         defaultData[pColor] = defaultPlayer;
         initScores[pColor] = 0;
     }
@@ -101,7 +64,7 @@ function App() {
         //queen bonus tie, split round down
 
         //for each legal good item
-        for (const good of Object.keys(kqBonus)) {
+        for (const good of Object.keys(Constants.kqBonus)) {
             //for each player
 
             let goodAmount = [];
@@ -143,7 +106,8 @@ function App() {
                 //indsecond is number of 1st plcae, num second is num second place
                 //only king
                 if (indSecond > 1) {
-                    let extra = Math.floor((kqBonus[good].king + kqBonus[good].queen) / indSecond);
+                    let extra = Math.floor(
+                        (Constants.kqBonus[good].king + Constants.kqBonus[good].queen) / indSecond);
 
                     //add the bonus to each
                     for (let i = 0; i < indSecond; i++) {
@@ -156,15 +120,15 @@ function App() {
                 else {
                     //add king
                     let pColor = goodAmount[0][0];
-                    temp[pColor] += kqBonus[good].king;
+                    temp[pColor] += Constants.kqBonus[good].king;
 
                     //add queens: if none, give to king
                     if (numSecond == 0) {
-                        temp[pColor] += kqBonus[good].queen;
+                        temp[pColor] += Constants.kqBonus[good].queen;
                     }
 
                     else {
-                        let extra = Math.floor(kqBonus[good].queen / numSecond);
+                        let extra = Math.floor(Constants.kqBonus[good].queen / numSecond);
                         for (let i = indSecond; i < indSecond + numSecond; i++) {
                             pColor = goodAmount[i][0];
                             temp[pColor] += extra;
@@ -196,7 +160,7 @@ function App() {
 
             for (const item of Object.keys(playerData[player])) {
 
-                total += playerData[player][item] * itemVals[item];
+                total += playerData[player][item] * Constants.itemVals[item];
             }
 
             temp[player] = total;
