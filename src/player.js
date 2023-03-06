@@ -14,6 +14,10 @@ function Player(props) {
     }
 
 
+    //objecvt.entries.map(() => { stivk the jsx here })
+
+
+    //export function calcscore(){} in utils.js file
 
 
     return (

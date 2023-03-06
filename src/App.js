@@ -1,7 +1,22 @@
 import React, { useState } from 'react';
 import './App.css';
 import Player from './player'
-import Scores from './scores'
+import ScoreDisplay from './scoreDisplay'
+
+
+//3 types of files
+//data types
+//ui types
+//logic type
+//ui types should have anoun (playerform, scoredisplay, etc) in their name
+
+//need a class for data - use class methods to get/set
+//player scores should not be untyped like that
+//constants file: place all the defs
+//import {thing} from './comnstants'
+
+//make sure everthing is being expoted
+
 
 
 function App() {
@@ -235,7 +250,7 @@ function App() {
             <Player color="black" setter={getData} />
             <br />
 
-            <Scores scores = {playerScores} onClick = {calculateScores} />
+            <ScoreDisplay scores = {playerScores} onClick = {calculateScores} />
         </div>
   );
 }
