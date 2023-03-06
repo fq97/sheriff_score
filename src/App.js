@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import Player from './player'
+import PlayerForm from './playerForm'
 import ScoreDisplay from './scoreDisplay'
 import * as Constants from './constants'
 
@@ -201,7 +201,7 @@ function App() {
             {Constants.playerColors.map((color) => {
                 return (
                     <div key={"player" + color}>
-                        <Player color={color} setter={getData} />
+                        <PlayerForm color={color} setter={getData} />
                         <br />
                     </div>
                 );

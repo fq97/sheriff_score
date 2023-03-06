@@ -4,7 +4,7 @@ import * as Constants from './constants'
 
 
 
-function Player(props) {
+function PlayerForm(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -47,4 +47,4 @@ function Player(props) {
     );
 }
 
-export default Player;
+export default PlayerForm;
