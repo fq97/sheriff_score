@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Constants from './constants'
-import { Player } from './customClasses'
+import { Player, Scores } from './customClasses'
 
 //calculate k/q bonuses given temp score object and player data. mutates the temp object 
 export function calcKQ(playerData, temp) {
@@ -122,7 +122,13 @@ export function calculateScores(playerData) {
 
     //break ties: most legal goods, then most contraband goods
 
-    temp.winner = curWinner;
 
-    return temp;
+
+    //return a new Score object
+    let pScores = new Scores;
+    pScores.setAll(temp);
+    pScores.setWinner(curWinner);
+
+
+    return pScores;
 }

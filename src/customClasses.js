@@ -41,3 +41,44 @@ export class Player {
 
 
 }
+
+//class to hold scores of each player as well as the winner
+export class Scores {
+    constructor(playerList = Constants.playerColors) {
+        //initalize all scores to 0
+        this.playerScores = {};
+        for (const pColor of playerList) {
+            this.playerScores[pColor] = 0;
+        }
+
+        //add a winner
+        this.winner = "";
+    }
+
+    //player score setter
+    setScore(playerColor, playerScore) {
+        this.playerScores[playerColor] = playerScore;
+    }
+
+    //if have an object of players and scores, set all at once
+    setAll(playersAndScores) {
+        this.playerScores = playersAndScores;
+    }
+
+
+    //winner getter
+    setWinner(playerColor) {
+        this.winner = playerColor;
+    }
+
+    //getter for player score
+    getScore(playerColor) {
+        return this.playerScores[playerColor];
+    }
+
+    //getter for winner
+    getWinner() {
+        return this.winner;
+    }
+
+}

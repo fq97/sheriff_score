@@ -4,7 +4,7 @@ import PlayerForm from './playerForm'
 import ScoreDisplay from './scoreDisplay'
 import * as Constants from './constants'
 import { calculateScores } from './utils'
-import {Player } from './customClasses'
+import {Player, Scores } from './customClasses'
 
 //3 types of files
 //data types
@@ -33,17 +33,13 @@ function App() {
     }
 
     //create initial scores list
-    let initScores = {};
-    for (const pColor of Constants.playerColors) {
-        initScores[pColor] = 0;
-    }
-
-    //add a winner field to scores
-    initScores.winner = "";
+    let initScores = new Scores;
 
     //states
     const [playerData, setData] = useState(defaultData);
     const [playerScores, setScores] = useState(initScores);
+
+
 
     //get data from player forms
     const getData = (playerColor, formData) => {

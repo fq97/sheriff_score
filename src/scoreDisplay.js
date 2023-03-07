@@ -24,13 +24,13 @@ function ScoreDisplay(props) {
                     </tr>
 
                     <tr>
-                        <td> {props.scores.blue} </td>
-                        <td> {props.scores.red} </td>
-                        <td> {props.scores.green} </td>
-                        <td> {props.scores.yellow} </td>
-                        <td> {props.scores.purple} </td>
-                        <td> {props.scores.black} </td>
-                        <td> {props.scores.winner} </td>
+                        <td> {props.scores.getScore("blue")} </td>
+                        <td> {props.scores.getScore("red")} </td>
+                        <td> {props.scores.getScore("green")} </td>
+                        <td> {props.scores.getScore("yellow")} </td>
+                        <td> {props.scores.getScore("purple")} </td>
+                        <td> {props.scores.getScore("black")} </td>
+                        <td> {props.scores.getWinner()} </td>
                     </tr>
                 </tbody>
             </table>
