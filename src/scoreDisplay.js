@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+import * as Constants from './constants'
 
 
 //takes scores state object
@@ -14,22 +15,21 @@ function ScoreDisplay(props) {
                 }}>
                 <tbody>
                     <tr>
-                        <th>blue</th>
-                        <th>red</th>
-                        <th>green</th>
-                        <th>yellow</th>
-                        <th>purple</th>
-                        <th>black</th>
+                        {Constants.playerColors.map((color) => {
+                            return (
+                                <th key={color + "scoreheader"}>{color}</th>
+                            );
+                        })}
+
                         <th>Winner</th>
                     </tr>
 
                     <tr>
-                        <td> {props.scores.getScore("blue")} </td>
-                        <td> {props.scores.getScore("red")} </td>
-                        <td> {props.scores.getScore("green")} </td>
-                        <td> {props.scores.getScore("yellow")} </td>
-                        <td> {props.scores.getScore("purple")} </td>
-                        <td> {props.scores.getScore("black")} </td>
+                        {Constants.playerColors.map((color) => {
+                            return (
+                                <td key={color + "scorevalue"}>{props.scores.getScore(color)}</td>
+                            );
+                        })}
                         <td> {props.scores.getWinner()} </td>
                     </tr>
                 </tbody>
