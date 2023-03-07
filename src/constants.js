@@ -47,3 +47,41 @@ export const kqBonus = {
 
 
 export const playerColors = ["blue", "red", "green", "purple", "yellow", "black"];
+
+export const royalGoods = {
+    bleuCheese: {
+        value: 9,
+        good: "cheese",
+        goodBonus: 3
+    },
+    goudaCheese: {
+        value: 6,
+        good: "cheese",
+        goodBonus: 2
+    },
+    royalRooster: {
+        value: 8,
+        good: "chickens",
+        goodBonus: 2
+    },
+    greenApples: {
+        value: 4,
+        good: "apples",
+        goodBonus: 2
+    },
+    goldenApples: {
+        value: 6,
+        good: "apples",
+        goodBonus: 3
+    },
+    ryeBread: {
+        value: 6,
+        good: "bread",
+        goodBonus: 2
+    },
+    pumperBread: {
+        value: 9,
+        good: "bread",
+        goodBonus: 3
+    }
+}

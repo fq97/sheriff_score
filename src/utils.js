@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Constants from './constants'
-
+import { Player } from './customClasses'
 
 //calculate k/q bonuses given temp score object and player data. mutates the temp object 
 export function calcKQ(playerData, temp) {
@@ -18,7 +18,7 @@ export function calcKQ(playerData, temp) {
         let goodAmount = [];
         //put the amounts into a list
         for (const player of Object.keys(playerData)) {
-            goodAmount.push([player, playerData[player][good]]);
+            goodAmount.push([player, playerData[player].getItemCount(good)]);
         }
 
         //sort the list
@@ -97,9 +97,9 @@ export function calculateScores(playerData) {
     for (const player of Object.keys(playerData)) {
         let total = 0;
 
-        for (const item of Object.keys(playerData[player])) {
+        for (const item of Object.keys(playerData[player].getAllCounts())) {
 
-            total += playerData[player][item] * Constants.itemVals[item];
+            total += playerData[player].getItemCount(item) * Constants.itemVals[item];
         }
 
         temp[player] = total;

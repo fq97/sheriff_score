@@ -3,7 +3,8 @@ import './App.css';
 import PlayerForm from './playerForm'
 import ScoreDisplay from './scoreDisplay'
 import * as Constants from './constants'
-import { calculateScores } from './utils';
+import { calculateScores } from './utils'
+import {Player } from './customClasses'
 
 //3 types of files
 //data types
@@ -24,17 +25,16 @@ function App() {
     //temporary - will be variable later
     const numPlayers = 6;
 
-    //create default values
-    let defaultPlayer = {};
-    for (const item of Object.keys(Constants.itemVals)) {
-        defaultPlayer[item] = 0;
+
+    //create a map of players and colors
+    let defaultData = {};
+    for (const pColor of Constants.playerColors) {
+        defaultData[pColor] = new Player;
     }
 
-    //create default players and initial scores list
-    let defaultData = {};
+    //create initial scores list
     let initScores = {};
     for (const pColor of Constants.playerColors) {
-        defaultData[pColor] = defaultPlayer;
         initScores[pColor] = 0;
     }
 
@@ -50,15 +50,18 @@ function App() {
         //unpack. given a formdata object
         let updatedVals = Object.fromEntries(formData.entries());
 
-        //state setter takes an object and merges that new object with previous state
-        //the ({}) is 2 shortcuts. {} is object builder notation and () around it means return that value
+
+
+        let updatedPlayer = playerData[playerColor];
+        updatedPlayer.updateCounts(updatedVals);
+
+
         setData(prevState =>
         ({
             ...prevState,
-            [playerColor]: updatedVals
+            [playerColor]: updatedPlayer
         }));
     };
-
 
 
 
@@ -70,8 +73,6 @@ function App() {
     };
 
     //create the player UI displays
-
-
     return (
         <div>
             <h1>Player Scoring</h1>
