@@ -1,60 +1,38 @@
 import React, { useState } from 'react';
 import './App.css';
-import Player from './player'
-import Scores from './scores'
+import PlayerForm from './playerForm'
+import ScoreDisplay from './scoreDisplay'
+import * as Constants from './constants'
+
+//3 types of files
+//data types
+//ui types
+//logic type
+//ui types should have anoun (playerform, scoredisplay, etc) in their name
+
+//need a class for data - use class methods to get/set
+//player scores should not be untyped like that
+//constants file: place all the defs
+//import {thing} from './comnstants'
+
+//make sure everthing is being expoted
+
 
 
 function App() {
-    //this stuff is ugly. put into a json file?
-    //list of items and their values
-    const itemVals = {
-        cheese: 3,
-        apples: 2,
-        bread: 3,
-        chickens: 4,
-        money: 1,
-        pepper: 6,
-        mead: 7,
-        silk: 8,
-        crossbows: 9
-
-        //support for royal goods
-    };
-
+    //temporary - will be variable later
     const numPlayers = 6;
-
-    const kqBonus = {
-        cheese: {
-            king: 15,
-            queen: 10
-        },
-        apples: {
-            king: 20,
-            queen: 10
-        },
-        bread: {
-            king: 15,
-            queen: 10
-        },
-        chickens: {
-            king: 10,
-            queen: 5
-        }
-    };
-
-    //player colors
-    const playerColors = ["blue", "red", "green", "purple", "yellow", "black"];
 
     //create default values
     let defaultPlayer = {};
-    for (const item of Object.keys(itemVals)) {
+    for (const item of Object.keys(Constants.itemVals)) {
         defaultPlayer[item] = 0;
     }
 
     //create default players and initial scores list
     let defaultData = {};
     let initScores = {};
-    for (const pColor of playerColors) {
+    for (const pColor of Constants.playerColors) {
         defaultData[pColor] = defaultPlayer;
         initScores[pColor] = 0;
     }
@@ -66,7 +44,7 @@ function App() {
     const [playerData, setData] = useState(defaultData);
     const [playerScores, setScores] = useState(initScores);
 
-    //is it better to do this or just use function names
+    //get data from player forms
     const getData = (playerColor, formData) => {
         //unpack. given a formdata object
         let updatedVals = Object.fromEntries(formData.entries());
@@ -86,7 +64,7 @@ function App() {
         //queen bonus tie, split round down
 
         //for each legal good item
-        for (const good of Object.keys(kqBonus)) {
+        for (const good of Object.keys(Constants.kqBonus)) {
             //for each player
 
             let goodAmount = [];
@@ -128,7 +106,8 @@ function App() {
                 //indsecond is number of 1st plcae, num second is num second place
                 //only king
                 if (indSecond > 1) {
-                    let extra = Math.floor((kqBonus[good].king + kqBonus[good].queen) / indSecond);
+                    let extra = Math.floor(
+                        (Constants.kqBonus[good].king + Constants.kqBonus[good].queen) / indSecond);
 
                     //add the bonus to each
                     for (let i = 0; i < indSecond; i++) {
@@ -141,15 +120,15 @@ function App() {
                 else {
                     //add king
                     let pColor = goodAmount[0][0];
-                    temp[pColor] += kqBonus[good].king;
+                    temp[pColor] += Constants.kqBonus[good].king;
 
                     //add queens: if none, give to king
                     if (numSecond == 0) {
-                        temp[pColor] += kqBonus[good].queen;
+                        temp[pColor] += Constants.kqBonus[good].queen;
                     }
 
                     else {
-                        let extra = Math.floor(kqBonus[good].queen / numSecond);
+                        let extra = Math.floor(Constants.kqBonus[good].queen / numSecond);
                         for (let i = indSecond; i < indSecond + numSecond; i++) {
                             pColor = goodAmount[i][0];
                             temp[pColor] += extra;
@@ -181,7 +160,7 @@ function App() {
 
             for (const item of Object.keys(playerData[player])) {
 
-                total += playerData[player][item] * itemVals[item];
+                total += playerData[player][item] * Constants.itemVals[item];
             }
 
             temp[player] = total;
@@ -211,33 +190,27 @@ function App() {
 
     }
 
+    //create the player UI displays
+
 
     return (
         <div>
             <h1>Player Scoring</h1>
-            <br />
+                <br />
 
-            <Player color="blue" setter={getData} />
-            <br />
+            {Constants.playerColors.map((color) => {
+                return (
+                    <div key={"player" + color}>
+                        <PlayerForm color={color} setter={getData} />
+                        <br />
+                    </div>
+                );
+            })}
 
-            <Player color="red" setter={getData} />
-            <br />
-
-            <Player color="green" setter={getData} />
-            <br />
-
-            <Player color="yellow" setter={getData} />
-            <br />
-
-            <Player color="purple" setter={getData} />
-            <br />
-
-            <Player color="black" setter={getData} />
-            <br />
-
-            <Scores scores = {playerScores} onClick = {calculateScores} />
+          
+            <ScoreDisplay scores = {playerScores} onClick = {calculateScores} />
         </div>
-  );
+    );
 }
 
 export default App;

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 
 //takes scores state object
-function Scores(props) {
+function ScoreDisplay(props) {
 
     return (
         <div>
@@ -38,4 +38,4 @@ function Scores(props) {
     );
 }
 
-export default Scores;
+export default ScoreDisplay;
