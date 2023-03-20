@@ -50,36 +50,50 @@ export const playerColors = ["blue", "red", "green", "purple", "yellow", "black"
 
 export const royalGoods = {
     bleuCheese: {
+        name: "Bleu Cheese",
+        copies: 1,
         value: 9,
         good: "cheese",
         goodBonus: 3
     },
     goudaCheese: {
+        name: "Gouda Cheese",
+        copies: 2,
         value: 6,
         good: "cheese",
         goodBonus: 2
     },
     royalRooster: {
+        name: "Royal Rooster",
+        copies: 2,
         value: 8,
         good: "chickens",
         goodBonus: 2
     },
     greenApples: {
+        name: "Green Apples",
+        copies: 2,
         value: 4,
         good: "apples",
         goodBonus: 2
     },
     goldenApples: {
+        name: "Golden Apples",
+        copies: 2,
         value: 6,
         good: "apples",
         goodBonus: 3
     },
     ryeBread: {
+        name: "Rye Bread",
+        copies: 2,
         value: 6,
         good: "bread",
         goodBonus: 2
     },
     pumperBread: {
+        name: "Pumpernickel",
+        copies: 1,
         value: 9,
         good: "bread",
         goodBonus: 3
