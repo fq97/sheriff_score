@@ -16,9 +16,14 @@ export function calcKQ(playerData, temp) {
         //for each player
 
         let goodAmount = [];
-        //put the amounts into a list
+        let index = 0;
+
+        //put the raw amounts into a list
         for (const player of Object.keys(playerData)) {
             goodAmount.push([player, playerData[player].getItemCount(good)]);
+
+            //check if have royals for that good
+
         }
 
         //sort the list
@@ -98,8 +103,23 @@ export function calculateScores(playerData) {
         let total = 0;
 
         for (const item of Object.keys(playerData[player].getAllCounts())) {
+            //if in regular item
+            if (item in Constants.baseItemScores) {
+                total += playerData[player].getItemCount(item) *
+                    Constants.baseItemScores[item];
+            }
 
-            total += playerData[player].getItemCount(item) * Constants.itemVals[item];
+            //if royal good
+            else if (item in Constants.royalGoods) {
+                total += playerData[player].getItemCount(item) *
+                    Constants.royalGoods[item].value;
+            }
+
+            //if something else, currently fail
+            else {
+                console.log("fail adding raw score for item " + "item");
+            }
+            
         }
 
         temp[player] = total;

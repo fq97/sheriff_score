@@ -12,7 +12,10 @@ import React from 'react';
 //import {thing} from './comnstants'
 
 //make sure everthing is being expoted
-export const itemVals = {
+export const allModules = ["base", "royalGoods", "blackMarket", "specialOrder", "merryMen"];
+
+
+export const baseItemScores = {
     cheese: 3,
     apples: 2,
     bread: 3,
@@ -22,8 +25,6 @@ export const itemVals = {
     mead: 7,
     silk: 8,
     crossbows: 9
-
-    //support for royal goods
 };
 
 export const kqBonus = {

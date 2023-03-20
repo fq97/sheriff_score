@@ -46,10 +46,11 @@ function App() {
         //unpack. given a formdata object
         let updatedVals = Object.fromEntries(formData.entries());
 
-
+        console.log({ updatedVals });
 
         let updatedPlayer = playerData[playerColor];
         updatedPlayer.updateCounts(updatedVals);
+
 
 
         setData(prevState =>

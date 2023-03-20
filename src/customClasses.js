@@ -16,11 +16,30 @@ import * as Constants from './constants'
 
 
 export class Player {
-    //constructor: initializes a default score of 0 for each item, given an item list
-    constructor(itemList = Object.keys(Constants.itemVals)) {
-        this.items = {};
-        for (const item of itemList) {
-            this.items[item] = 0;
+    //constructor: initializes a default score of 0 for each item in each module given
+    constructor(moduleList = ["base", "royalGoods"]) {
+        //for each module
+        for (const module of moduleList) {
+
+            switch (module) {
+                case "base":
+                    this.base = {};
+                    Object.keys(Constants.baseItemScores).map(
+                        (item) => { this.base[item] = 0; }
+                    );
+                    break;
+
+                case "royalGoods":
+                    this.royalGoods = {};
+                    Object.keys(Constants.royalGoods).map(
+                        (item) => { this.royalGoods[item] = 0; }
+                    );
+                    break;
+
+                default:
+                    console.log("in player class constructor. mistake made in module selection");
+            }
+
         }
     }
 

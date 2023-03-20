@@ -28,7 +28,7 @@ function PlayerForm(props) {
             onSubmit={handleSubmit}
         >
 
-            {Object.keys(Constants.itemVals).map((itemName) => {
+            {Object.keys(Constants.baseItemScores).map((itemName) => {
                 return (
                     <div key={itemName}>
                         {itemName}
@@ -44,7 +44,7 @@ function PlayerForm(props) {
 
             <input type = "submit" value = "submit"/>
 
-    </form>
+        </form>
     );
 }
 

@@ -11,8 +11,7 @@ function RoyalGoodsForm(props) {
             style={{
                 borderStyle: "solid",
                 backgroundColor: props.color
-            }}
-        >
+            }}>
             {Object.keys(Constants.royalGoods).map((itemName) => {
                 //create array of 0-number of copies
                 let possCopies = [];
@@ -26,7 +25,7 @@ function RoyalGoodsForm(props) {
 
                         {Constants.royalGoods[itemName].name}
                         <br />
-                        0 <input type="radio" name={itemName} value="0" checked/>
+                        0 <input type="radio" name={itemName} value="0" onChange={() => { }} checked/>
                         1 <input type="radio" name={itemName} value="1" />
                         2 <input type="radio" name={itemName} value="2" />
 
