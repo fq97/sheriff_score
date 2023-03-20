@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import PlayerForm from './playerForm'
 import ScoreDisplay from './scoreDisplay'
-import RoyalGoodsForm from './royalGoodsForm'
+import PlayerForm from './playerForm'
+import { Player, Scores } from './customClasses'
 import * as Constants from './constants'
 import { calculateScores } from './utils'
-import {Player, Scores } from './customClasses'
 
 //3 types of files
 //data types
@@ -79,8 +78,6 @@ function App() {
                 return (
                     <div key={"player" + color}>
                         <PlayerForm color={color} setter={getData} />
-                        <br />
-                        <RoyalGoodsForm color={color} />
                         <br />
                     </div>
                 );

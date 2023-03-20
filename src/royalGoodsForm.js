@@ -7,7 +7,7 @@ import * as Constants from './constants'
 function RoyalGoodsForm(props) {
     return (
 
-        <form
+        <fieldset
             style={{
                 borderStyle: "solid",
                 backgroundColor: props.color
@@ -36,12 +36,7 @@ function RoyalGoodsForm(props) {
                     </div>
                 );
             })}
-
-
-        <input type="submit" value="submit" />
-
-
-        </form>
+        </fieldset>
 
     );
 

@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 import * as Constants from './constants'
+import RoyalGoodsForm from './royalGoodsForm';
 
 
 
@@ -39,7 +40,7 @@ function PlayerForm(props) {
                 );
             })}
 
-
+            <RoyalGoodsForm color={props.color} />
 
             <input type = "submit" value = "submit"/>
 
