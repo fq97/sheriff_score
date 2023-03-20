@@ -28,11 +28,11 @@ function PlayerForm(props) {
             onSubmit={handleSubmit}
         >
 
-            {Object.keys(Constants.baseItemScores).map((itemName) => {
+            {Object.keys(Constants.base).map((itemName) => {
                 return (
                     <div key={itemName}>
                         {itemName}
-                        <input type="number" name={itemName} />
+                        <input type="number" name={"base " + itemName} />
                         < br />
 
                     </div>

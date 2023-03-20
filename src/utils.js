@@ -102,24 +102,14 @@ export function calculateScores(playerData) {
     for (const player of Object.keys(playerData)) {
         let total = 0;
 
-        for (const item of Object.keys(playerData[player].getAllCounts())) {
-            //if in regular item
-            if (item in Constants.baseItemScores) {
-                total += playerData[player].getItemCount(item) *
-                    Constants.baseItemScores[item];
-            }
+        //calculate raw scores of each supported module
+        for (const module of Constants.supportedModules) {
 
-            //if royal good
-            else if (item in Constants.royalGoods) {
+            //calculate raw scores
+            for (const item of Object.keys(Constants[module])) {
                 total += playerData[player].getItemCount(item) *
-                    Constants.royalGoods[item].value;
+                    Constants[module][item].score;
             }
-
-            //if something else, currently fail
-            else {
-                console.log("fail adding raw score for item " + "item");
-            }
-            
         }
 
         temp[player] = total;

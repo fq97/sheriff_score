@@ -18,47 +18,37 @@ import * as Constants from './constants'
 export class Player {
     //constructor: initializes a default score of 0 for each item in each module given
     constructor(moduleList = ["base", "royalGoods"]) {
-        //for each module
         for (const module of moduleList) {
+            this[module] = {};
 
-            switch (module) {
-                case "base":
-                    this.base = {};
-                    Object.keys(Constants.baseItemScores).map(
-                        (item) => { this.base[item] = 0; }
-                    );
-                    break;
-
-                case "royalGoods":
-                    this.royalGoods = {};
-                    Object.keys(Constants.royalGoods).map(
-                        (item) => { this.royalGoods[item] = 0; }
-                    );
-                    break;
-
-                default:
-                    console.log("in player class constructor. mistake made in module selection");
+            for (const item in Constants[module]) {
+                this[module][item] = 0;
             }
-
         }
     }
 
     //setter: takes an object of key value pairs of item name and item count
     updateCounts(itemsAndCounts) {
-        this.items = itemsAndCounts;
+        let module = "";
+        let itemName = "";
+
+        //for each item, split to find the module and item name, then update
+        for (const fieldName in itemsAndCounts) {
+            [module, itemName] = fieldName.split(" ");
+            this[module][itemName] = itemsAndCounts[fieldName];
+        }
     }
 
     //getter: return single item
     getItemCount(item) {
-        return this.items[item];
+        //find the module
+        for (const module of Constants.supportedModules) {
+            if (item in this[module]) {
+                //console.log("part of module " + { module });
+                return this[module][item];
+            }
+        }
     }
-
-    //getter: return all items this.items
-    getAllCounts() {
-        return this.items;
-    }
-
-
 }
 
 //class to hold scores of each player as well as the winner
