@@ -56,49 +56,49 @@ export const royalGoods = {
         name: "Bleu Cheese",
         copies: 1,
         score: 9,
-        good: "cheese",
+        goodType: "cheese",
         goodBonus: 3
     },
     goudaCheese: {
         name: "Gouda Cheese",
         copies: 2,
         score: 6,
-        good: "cheese",
+        goodType: "cheese",
         goodBonus: 2
     },
     royalRooster: {
         name: "Royal Rooster",
         copies: 2,
         score: 8,
-        good: "chickens",
+        goodType: "chickens",
         goodBonus: 2
     },
     greenApples: {
         name: "Green Apples",
         copies: 2,
         score: 4,
-        good: "apples",
+        goodType: "apples",
         goodBonus: 2
     },
     goldenApples: {
         name: "Golden Apples",
         copies: 2,
         score: 6,
-        good: "apples",
+        goodType: "apples",
         goodBonus: 3
     },
     ryeBread: {
         name: "Rye Bread",
         copies: 2,
         score: 6,
-        good: "bread",
+        goodType: "bread",
         goodBonus: 2
     },
     pumperBread: {
         name: "Pumpernickel",
         copies: 1,
         score: 9,
-        good: "bread",
+        goodType: "bread",
         goodBonus: 3
     }
 }

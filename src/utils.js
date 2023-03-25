@@ -9,22 +9,36 @@ export function calcKQ(playerData, temp) {
     //temp constant for num players
     const numPlayers = 6;
 
-
-
     //for each legal good item
     for (const good of Object.keys(Constants.kqBonus)) {
-        //for each player
-
+        //for each player, reset helper vars
         let goodAmount = [];
-        let index = 0;
-
-        //put the raw amounts into a list
+        let effectiveAmount = 0;
+        
+        //put the effective amounts (with bonus) into a list
         for (const player of Object.keys(playerData)) {
-            goodAmount.push([player, playerData[player].getItemCount(good)]);
+            //get the current number of that good
+            effectiveAmount = playerData[player].getItemCount(good);
 
             //check if have royals for that good
+            //iterate through all the royal in player
+            
+            for (const royalGood of Object.keys(Constants.royalGoods)) {
+                //if royal good matches current good, add good * goodbonus to good amount
+                if (Constants.royalGoods[royalGood].goodType == good) {
+                    let playerHas = playerData[player].getItemCount(royalGood);
 
+                    effectiveAmount += playerData[player].getItemCount(royalGood) *
+                        Constants.royalGoods[royalGood].goodBonus;
+                }
+
+                
+            }
+
+            //add to list
+            goodAmount.push([player, effectiveAmount]);
         }
+
 
         //sort the list
         goodAmount.sort((a, b) => { return a[1] - b[1]; });
@@ -97,6 +111,7 @@ export function calcKQ(playerData, temp) {
 //return scores for each player including the winner
 export function calculateScores(playerData) {
     let temp = {};
+    let asdf = {};
 
     //calculate individual player raw scores
     for (const player of Object.keys(playerData)) {
@@ -114,6 +129,7 @@ export function calculateScores(playerData) {
 
         temp[player] = total;
     }
+
 
     //add on the king and queen bonuses
     calcKQ(playerData, temp);

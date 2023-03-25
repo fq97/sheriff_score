@@ -35,7 +35,7 @@ export class Player {
         //for each item, split to find the module and item name, then update
         for (const fieldName in itemsAndCounts) {
             [module, itemName] = fieldName.split(" ");
-            this[module][itemName] = itemsAndCounts[fieldName];
+            this[module][itemName] = parseInt(itemsAndCounts[fieldName]) || 0;
         }
     }
 
@@ -44,7 +44,6 @@ export class Player {
         //find the module
         for (const module of Constants.supportedModules) {
             if (item in this[module]) {
-                //console.log("part of module " + { module });
                 return this[module][item];
             }
         }
