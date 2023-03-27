@@ -9,8 +9,7 @@ function RoyalGoodsForm(props) {
 
         <fieldset
             style={{
-                borderStyle: "solid",
-                backgroundColor: props.color
+                borderStyle: "none",
             }}>
             {Object.keys(Constants.royalGoods).map((itemName) => {
                 return (
@@ -22,7 +21,6 @@ function RoyalGoodsForm(props) {
                         1 <input type="radio" name={"royalGoods " + itemName} value="1" />
                         2 <input type="radio" name={"royalGoods " + itemName} value="2" />
                         < br />
-
 
                     </div>
                 );

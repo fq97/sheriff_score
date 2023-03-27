@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
-import * as Constants from './constants'
+import * as Constants from './constants';
 import RoyalGoodsForm from './royalGoodsForm';
 
 
@@ -15,36 +15,48 @@ function PlayerForm(props) {
         props.setter(props.color, data);
     }
 
-
-    //export function calcscore(){} in utils.js file
-
+    //image url
+    let imageUrl = "url(./images/" + props.color + ".jpg)"
 
     return (
-        <form
-            style={{
-                borderStyle: "solid",
-                backgroundColor: props.color
-            }}
-            onSubmit={handleSubmit}
-        >
+        <div className="formContainer">
+            <form
+                style={{
+                    borderStyle: "solid",
+                    backgroundImage: imageUrl,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    backgroundPosition: "center",
+                    width: Constants.imageWidth,
+                    height: Constants.imageHeight,
+                    padding: "none"
+                }}
+                onSubmit={handleSubmit}
+            >
 
-            {Object.keys(Constants.base).map((itemName) => {
-                return (
-                    <div key={itemName}>
-                        {itemName}
-                        <input type="number" name={"base " + itemName} />
-                        < br />
+                <fieldset>
+                    {Object.keys(Constants.base).map((itemName) => {
+                        return (
+                            <div key={itemName}>
+                                {itemName}
+                                <input type="number" name={"base " + itemName} />
+                                < br />
 
-                    </div>
+                            </div>
 
-                );
-            })}
+                        );
+                    })}
+                </fieldset>
+                <RoyalGoodsForm />
 
-            <RoyalGoodsForm color={props.color} />
+                <input type = "submit" value = "submit"/>
 
-            <input type = "submit" value = "submit"/>
-
-        </form>
+            </form>
+        </div>
     );
 }
 

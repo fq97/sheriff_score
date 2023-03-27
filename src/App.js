@@ -69,8 +69,11 @@ function App() {
     //create the player UI displays
     return (
         <div>
-            <h1>Player Scoring</h1>
-                <br />
+            <h1 style={{
+                textAlign:"center"
+            }}
+            >
+                Player Scoring</h1>
 
             {Constants.playerColors.map((color) => {
                 return (
