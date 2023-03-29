@@ -12,8 +12,8 @@ import React from 'react';
 //import {thing} from './comnstants'
 
 //make sure everthing is being expoted
-export const imageWidth = "500px";
-export const imageHeight = "700px";
+export const imageWidth = "500";
+export const imageHeight = "700";
 
 
 

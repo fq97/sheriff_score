@@ -31,8 +31,8 @@ function PlayerForm(props) {
                     justifyContent: "center",
                     textAlign: "center",
                     backgroundPosition: "center",
-                    width: Constants.imageWidth,
-                    height: Constants.imageHeight,
+                    width: Constants.imageWidth + "px",
+                    height: Constants.imageHeight + "px",
                     padding: "none"
                 }}
                 onSubmit={handleSubmit}
@@ -42,8 +42,23 @@ function PlayerForm(props) {
                     {Object.keys(Constants.base).map((itemName) => {
                         return (
                             <div key={itemName}>
-                                {itemName}
-                                <input type="number" name={"base " + itemName} />
+                                <label htmlFor={itemName + " entry"}
+                                    style={{
+                                        display: "inline-block",
+                                        float: "center",
+                                        width: Constants.imageWidth / 3,
+                                        fontSize: "24px",
+                                        fontWeight: "500",
+                                        textAlign: "right",
+                                        marginRight: "10px"
+                                        }}>{itemName}</label>
+                                <input type="number" name={"base " + itemName} id={itemName + " entry"}
+                                    style={{
+                                        display: "inline-block",
+                                        float: "center",
+                                        width: Constants.imageWidth / 3,
+                                        fontSize: "24px",
+                                    }} />
                                 < br />
 
                             </div>

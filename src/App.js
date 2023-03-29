@@ -68,11 +68,19 @@ function App() {
 
     //create the player UI displays
     return (
-        <div>
+        <div style={{
+            backgroundImage: "url(./images/trees.jpg)",
+            backgroundAttachment: "fixed",
+            backgroundPosition: "center",
+            backgroundColor: "rgb(38, 77, 0)",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+        }}>
             <h1 style={{
-                textAlign:"center"
-            }}
-            >
+                textAlign: "center",
+                margin: "0px",
+                padding: "20px"
+            }}>
                 Player Scoring</h1>
 
             {Constants.playerColors.map((color) => {
