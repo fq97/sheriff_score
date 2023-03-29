@@ -9,16 +9,20 @@ import BaseForm from './baseForm'
 function PlayerForm(props) {
 
     function handleSubmit(event) {
+        //send data
         event.preventDefault();
-
         const data = new FormData(event.target);
-
         props.setter(props.color, data);
+
+        //update module state
+        setCurModuleIndex((curModuleIndex + 1) % Constants.supportedModules.length);
     }
 
     //image url
     let imageUrl = "url(./images/" + props.color + ".jpg)";
 
+    //state for managing which form is displayed
+    const [curModuleIndex, setCurModuleIndex] = useState(0);
 
 
     //testing
@@ -52,7 +56,7 @@ function PlayerForm(props) {
                     {
                         "base": <BaseForm />,
                         "royalGoods": <RoyalGoodsForm />
-                    }[curModule]
+                    }[Constants.supportedModules[curModuleIndex]]
                 }
 
 
