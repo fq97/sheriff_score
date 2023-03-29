@@ -74,12 +74,18 @@ function App() {
             backgroundPosition: "center",
             backgroundColor: "rgb(38, 77, 0)",
             backgroundSize: "contain",
-            backgroundRepeat: "no-repeat"
+            backgroundRepeat: "no-repeat",
+            textAlign: "center"
         }}>
             <h1 style={{
                 textAlign: "center",
+                position: "relative",
+                left: "50%",
+                transform: "translate(-50%, 0)",
+                width: Constants.imageWidth + "px",
+                background: "rgba(255, 255, 255, 0.3)",
                 margin: "0px",
-                padding: "20px"
+                padding: "20px 0px",
             }}>
                 Player Scoring</h1>
 

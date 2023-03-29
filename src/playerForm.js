@@ -19,7 +19,10 @@ function PlayerForm(props) {
     let imageUrl = "url(./images/" + props.color + ".jpg)"
 
     return (
-        <div className="formContainer">
+        <div className="formContainer"
+            style={{
+                marginTop: "20px"
+            }}>
             <form
                 style={{
                     borderStyle: "solid",
