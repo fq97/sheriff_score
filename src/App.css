@@ -10,8 +10,19 @@
 }
 
 fieldset {
-    background: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.45);
     border: none;
+}
+
+label {
+    font-size: 24px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.radioButton {
+    width: 20px;
+    height: 20px;
 }
 
 

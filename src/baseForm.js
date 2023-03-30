@@ -16,17 +16,18 @@ function BaseForm(props) {
                                 display: "inline-block",
                                 float: "center",
                                 width: Constants.imageWidth / 3,
-                                fontSize: "24px",
-                                fontWeight: "500",
                                 textAlign: "right",
-                                marginRight: "10px"
+                                marginRight: "10px",
+                                marginBottom: "10px",
+                                transform: "translate(-30px)"
                             }}>{itemName}</label>
                         <input type="number" name={"base " + itemName} id={itemName + " entry"}
                             style={{
                                 display: "inline-block",
                                 float: "center",
-                                width: Constants.imageWidth / 3,
+                                width: "3em",
                                 fontSize: "24px",
+                                transform: "translate(-30px)"
                             }} />
                         < br />
 

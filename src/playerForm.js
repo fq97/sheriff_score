@@ -61,7 +61,14 @@ function PlayerForm(props) {
 
 
 
-                <input type = "submit" value = "submit"/>
+                <input type="submit" value="submit"
+                    style={{
+                        height: "40px",
+                        fontSize: "22px",
+                        backgroundColor: "rgb(139,176,73)",
+                        borderTop: "2px",
+                        borderBottom: "2px"
+                    }}/>
 
             </form>
         </div>

@@ -15,11 +15,25 @@ function RoyalGoodsForm(props) {
                 return (
                     <div key={itemName + "form"}>
 
-                        {Constants.royalGoods[itemName].name}
-                        <br />
-                        0 <input type="radio" name={"royalGoods " + itemName} value="0" onChange={() => { }} checked/>
-                        1 <input type="radio" name={"royalGoods " + itemName} value="1" />
-                        2 <input type="radio" name={"royalGoods " + itemName} value="2" />
+                        <p style={{
+                            fontSize: "24px",
+                            fontWeight: "500",
+                            margin: "0px"
+                        }}>{Constants.royalGoods[itemName].name}</p>
+                        
+                        <input type="radio" id={"royal" + itemName + 0} className="radioButton"
+                            name={"royalGoods " + itemName} value="0" onChange={() => { }} defaultChecked />
+                        <label htmlFor={"royal" + itemName + 0}>0</label>
+
+                        
+                        <input type="radio" id={"royal" + itemName + 1} className="radioButton"
+                            name={"royalGoods " + itemName} value="1" />
+                        <label htmlFor={"royal" + itemName + 1}>1</label>
+
+                        
+                        <input type="radio" id={"royal" + itemName + 2} className="radioButton"
+                            name={"royalGoods " + itemName} value="2" />
+                        <label htmlFor={"royal" + itemName + 2}>2</label>
                         < br />
 
                     </div>
