@@ -10,7 +10,7 @@
 }
 
 fieldset {
-    background: rgba(255,255,255,0.45);
+    background: rgba(255,255,255,0.50);
     border: none;
 }
 
@@ -23,6 +23,10 @@ label {
 .radioButton {
     width: 20px;
     height: 20px;
+    align-self: flex-start;
+}
+
+.radioLabel {
 }
 
 
