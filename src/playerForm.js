@@ -22,7 +22,7 @@ function PlayerForm(props) {
     let imageUrl = "url(./images/" + props.color + ".jpg)";
 
     //state for managing which form is displayed
-    const [curModuleIndex, setCurModuleIndex] = useState(1);
+    const [curModuleIndex, setCurModuleIndex] = useState(0);
 
 
     //testing

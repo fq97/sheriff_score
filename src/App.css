@@ -20,6 +20,11 @@ label {
     margin-right: 10px;
 }
 
+.flexBreak {
+    flex-basis: 100%;
+    height: 0;
+}
+
 .radioButton {
     width: 20px;
     height: 20px;

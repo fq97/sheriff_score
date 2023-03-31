@@ -10,20 +10,25 @@ function RoyalGoodsForm(props) {
         <fieldset
             style={{
                 borderStyle: "none",
-                display: "flex",
-                flexDirection: "column",
-                alignC: "flex-start"
+                alignItems: "flex-end"
             }}>
             {Object.keys(Constants.royalGoods).map((itemName) => {
                 return (
-                    <div key={itemName + "form"}>
+                    <div key={itemName + "form"}
+                        style={{
+                            display: "flex",
+                            flexFlow: "row wrap",
+                            alignItems: "flex-start",
+                            paddingLeft: Constants.imageWidth / 3 + "px"
+                        }}>
 
                         <p style={{
                             fontSize: "24px",
                             fontWeight: "500",
-                            margin: "0px",
-                            float: "center"
+                            margin: "0px"
                         }}>{Constants.royalGoods[itemName].name}</p>
+
+                        <div className="flexBreak"></div>
                         
                         <input type="radio" id={"royal" + itemName + 0} className="radioButton"
                             name={"royalGoods " + itemName} value="0" onChange={() => { }}
