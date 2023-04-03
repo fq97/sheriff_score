@@ -62,6 +62,23 @@ export class Player {
     }
 
     //count contraband goods
+    getContrabandCount() {
+        let total = 0;
+
+        //count contraband in base game
+        for (const good of Object.keys(Constants.base)) {
+            if ((good != "money") && !Constants.legalGoods.includes(good)) {
+                total += this.getItemCount(good);
+            }
+        }
+
+        //count royal goods
+        for (const rGood of Object.keys(Constants.royalGoods)) {
+            total += this.getItemCount(rGood);
+        }
+
+        return total;
+    }
 
 }
 

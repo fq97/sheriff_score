@@ -16,7 +16,7 @@ export function calcKQ(playerData, temp) {
     }
 
     //for each legal good item
-    for (const good of Constants.legalGoods) {
+    for (const good of Object.keys(Constants.kqBonus)) {
         //for each player, reset helper vars
         let goodAmount = [];
         let effectiveAmount = 0;
@@ -160,9 +160,12 @@ export function calculateWinner(playerData, playerScores) {
     curScores.sort((a, b) => { return a[1] - b[1]; });
     curScores.reverse();
 
+
     //check for ties
     numTied = 0;
     winner = curScores[0][0];
+    winnerScore = curScores[0][1];
+
     for (const pAndS of curScores) {
         if (pAndS[1] == winnerScore) {
             numTied++;
@@ -188,7 +191,6 @@ export function calculateWinner(playerData, playerScores) {
 
     //return 1st player (assume all ties broken)
     return curScores[0][0];
-
 }
 
 
@@ -227,7 +229,7 @@ export function calculateScores(playerData) {
 
     //calculate and set the winner
     let winner = calculateWinner(playerData, pScores);
-
+    pScores.setWinner(winner);
 
     return pScores;
 }
