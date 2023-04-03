@@ -48,6 +48,21 @@ export class Player {
             }
         }
     }
+
+    //count legal goods
+    getLegalCount() {
+        let total = 0;
+
+        //for base module, count number of legal goods
+        for (const lGood of Constants.legalGoods) {
+            total += this.getItemCount(lGood);
+        }
+
+        return total;
+    }
+
+    //count contraband goods
+
 }
 
 //class to hold scores of each player as well as the winner

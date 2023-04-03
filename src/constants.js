@@ -22,6 +22,8 @@ export const allModules = ["base", "royalGoods", "blackMarket", "specialOrder", 
 
 export const supportedModules = ["base", "royalGoods"];
 
+export const legalGoods = ["cheese", "apples", "bread", "chicken"];
+
 
 export const base = {
     cheese: { score: 3 },

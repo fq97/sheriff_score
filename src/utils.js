@@ -8,6 +8,12 @@ export function calcKQ(playerData, temp) {
     //queen bonus tie, split round down
     //temp constant for num players
     const numPlayers = 6;
+    let playerBonus = {};
+
+    //initialize playerbonus object
+    for (const player of Object.keys(playerData)) {
+        playerBonus[player] = 0;
+    }
 
     //for each legal good item
     for (const good of Object.keys(Constants.kqBonus)) {
@@ -79,7 +85,7 @@ export function calcKQ(playerData, temp) {
                 //add the bonus to each
                 for (let i = 0; i < indSecond; i++) {
                     let pColor = goodAmount[i][0];
-                    temp[pColor] += extra;
+                    playerBonus[pColor] += extra;
                 }
             }
 
@@ -87,31 +93,36 @@ export function calcKQ(playerData, temp) {
             else {
                 //add king
                 let pColor = goodAmount[0][0];
-                temp[pColor] += Constants.kqBonus[good].king;
+                playerBonus[pColor] += Constants.kqBonus[good].king;
 
                 //add queens: if none, give to king
                 if (numSecond == 0) {
-                    temp[pColor] += Constants.kqBonus[good].queen;
+                    playerBonus[pColor] += Constants.kqBonus[good].queen;
                 }
 
                 else {
                     let extra = Math.floor(Constants.kqBonus[good].queen / numSecond);
                     for (let i = indSecond; i < indSecond + numSecond; i++) {
                         pColor = goodAmount[i][0];
-                        temp[pColor] += extra;
+                        playerBonus[pColor] += extra;
                     }
                 }
             }
         }
     }
+
+    //return object of bonus points
+    return playerBonus;
 }
 
 
-//calculate scores for all players and determines winner. takes object containing raw player data
-//return scores for each player including the winner
+//and determines winner
+
+
+//calculate scores for all players. takes object containing raw player data
+//return score object
 export function calculateScores(playerData) {
     let temp = {};
-    let asdf = {};
 
     //calculate individual player raw scores
     for (const player of Object.keys(playerData)) {
@@ -132,7 +143,10 @@ export function calculateScores(playerData) {
 
 
     //add on the king and queen bonuses
-    calcKQ(playerData, temp);
+    let kqBonus = calcKQ(playerData, temp);
+    for (const player of Object.keys(playerData)) {
+        temp[player] += kqBonus[player];
+    }
 
 
     //find the winner: use temp since state hasn't updated yet
