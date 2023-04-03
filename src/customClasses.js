@@ -88,8 +88,12 @@ export class Scores {
         this.playerScores = playersAndScores;
     }
 
+    //get all scores
+    getAll() {
+        return this.playerScores;
+    }
 
-    //winner getter
+    //winner setter
     setWinner(playerColor) {
         this.winner = playerColor;
     }

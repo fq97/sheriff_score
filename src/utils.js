@@ -16,7 +16,7 @@ export function calcKQ(playerData, temp) {
     }
 
     //for each legal good item
-    for (const good of Object.keys(Constants.kqBonus)) {
+    for (const good of Constants.legalGoods) {
         //for each player, reset helper vars
         let goodAmount = [];
         let effectiveAmount = 0;
@@ -116,7 +116,80 @@ export function calcKQ(playerData, temp) {
 }
 
 
-//and determines winner
+//determines winner given player data and score object. return string of winner
+export function calculateWinner(playerData, playerScores) {
+    //create array of [player, score]
+    let curScores = [];
+    for (const player of Object.keys(playerScores.getAll())) {
+        curScores.push([player, playerScores.getScore(player)]);
+    }
+
+    //sort the array
+    curScores.sort((a, b) => { return a[1] - b[1]; });
+    curScores.reverse();
+
+    //throw out blank case: no scores
+    let winner = curScores[0][0];
+    let winnerScore = curScores[0][1];
+    if (winnerScore == 0) {
+        return "";
+    }
+
+    //check for ties
+    let numTied = 0;
+    for (const pAndS of curScores) {
+        if (pAndS[1] == winnerScore) {
+            numTied++;
+        }
+    }
+
+    //one winner
+    if (numTied == 1) {
+        return winner;
+    }
+
+    //else, tie: break with legal goods. discard all non-tied from array
+    while (curScores.length > numTied) {
+        curScores.pop();
+    }
+
+    //replace score with legal goods count, sort
+    for (const pAndS of curScores) {
+        pAndS[1] = playerData[pAndS[0]].getLegalCount();
+    }
+    curScores.sort((a, b) => { return a[1] - b[1]; });
+    curScores.reverse();
+
+    //check for ties
+    numTied = 0;
+    winner = curScores[0][0];
+    for (const pAndS of curScores) {
+        if (pAndS[1] == winnerScore) {
+            numTied++;
+        }
+    }
+
+    //tie broken
+    if (numTied == 1) {
+        return winner;
+    }
+
+    //still not broken, break using contraband goods. discard non tied from array
+    while (curScores.length > numTied) {
+        curScores.pop();
+    }
+
+    //replace score with contraband goods count, sort
+    for (const pAndS of curScores) {
+        pAndS[1] = playerData[pAndS[0]].getContrabandCount();
+    }
+    curScores.sort((a, b) => { return a[1] - b[1]; });
+    curScores.reverse();
+
+    //return 1st player (assume all ties broken)
+    return curScores[0][0];
+
+}
 
 
 //calculate scores for all players. takes object containing raw player data
@@ -148,26 +221,12 @@ export function calculateScores(playerData) {
         temp[player] += kqBonus[player];
     }
 
-
-    //find the winner: use temp since state hasn't updated yet
-    let curMax = 0;
-    let curWinner = "";
-
-    for (const player of Object.keys(temp)) {
-        if (temp[player] > curMax) {
-            curMax = temp[player];
-            curWinner = player;
-        }
-    }
-
-    //break ties: most legal goods, then most contraband goods
-
-
-
-    //return a new Score object
+    //create a scores object with player scores
     let pScores = new Scores;
     pScores.setAll(temp);
-    pScores.setWinner(curWinner);
+
+    //calculate and set the winner
+    let winner = calculateWinner(playerData, pScores);
 
 
     return pScores;
