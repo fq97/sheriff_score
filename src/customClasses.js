@@ -82,13 +82,17 @@ export class Player {
 
 }
 
-//class to hold scores of each player as well as the winner
+//class to hold scores and legal/contraband totals of each player as well as the winner
 export class Scores {
     constructor(playerList = Constants.playerColors) {
         //initalize all scores to 0
         this.playerScores = {};
         for (const pColor of playerList) {
-            this.playerScores[pColor] = 0;
+            this.playerScores[pColor] = {
+                score: 0,
+                legal: 0,
+                contraband: 0
+            };
         }
 
         //add a winner
@@ -97,17 +101,17 @@ export class Scores {
 
     //player score setter
     setScore(playerColor, playerScore) {
-        this.playerScores[playerColor] = playerScore;
+        this.playerScores[playerColor].score = playerScore;
     }
 
-    //if have an object of players and scores, set all at once
-    setAll(playersAndScores) {
-        this.playerScores = playersAndScores;
+    //player legal count setter
+    setLegalScore(playerColor, legalCount) {
+        this.playerScores[playerColor].legal = legalCount;
     }
 
-    //get all scores
-    getAll() {
-        return this.playerScores;
+    //player contraband count setter
+    setContrabandScore(playerColor, contrabandCount) {
+        this.playerScores[playerColor].contraband = contrabandCount;
     }
 
     //winner setter
@@ -117,12 +121,27 @@ export class Scores {
 
     //getter for player score
     getScore(playerColor) {
-        return this.playerScores[playerColor];
+        return this.playerScores[playerColor].score;
     }
 
+    //get player legal count
+    getLegalScore(playerColor) {
+        return this.playerScores[playerColor].legal;
+    }
+
+    //get player contraband count
+    getContrabandScore(playerColor) {
+        return this.playerScores[playerColor].contraband;
+    }
+
+    
     //getter for winner
     getWinner() {
         return this.winner;
     }
 
+    //get players
+    getPlayers() {
+        return Object.keys(this.playerScores);
+    }
 }

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import * as Constants from './constants'
 
 
-//takes scores state object
+//takes scores state object and onclick handler
 function ScoreDisplay(props) {
 
     return (
@@ -15,6 +15,7 @@ function ScoreDisplay(props) {
                 }}>
                 <tbody>
                     <tr>
+                        <th></th>
                         {Constants.playerColors.map((color) => {
                             return (
                                 <th key={color + "scoreheader"}>{color}</th>
@@ -25,6 +26,7 @@ function ScoreDisplay(props) {
                     </tr>
 
                     <tr>
+                        <td>Scores</td>
                         {Constants.playerColors.map((color) => {
                             return (
                                 <td key={color + "scorevalue"}>{props.scores.getScore(color)}</td>

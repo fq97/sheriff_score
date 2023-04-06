@@ -117,10 +117,10 @@ export function calcKQ(playerData, temp) {
 
 
 //determines winner given player data and score object. return string of winner
-export function calculateWinner(playerData, playerScores) {
+export function calculateWinner(playerScores) {
     //create array of [player, score]
     let curScores = [];
-    for (const player of Object.keys(playerScores.getAll())) {
+    for (const player of playerScores.getPlayers()) {
         curScores.push([player, playerScores.getScore(player)]);
     }
 
@@ -155,7 +155,7 @@ export function calculateWinner(playerData, playerScores) {
 
     //replace score with legal goods count, sort
     for (const pAndS of curScores) {
-        pAndS[1] = playerData[pAndS[0]].getLegalCount();
+        pAndS[1] = playerScores.getLegalScore(pAndS[0]);
     }
     curScores.sort((a, b) => { return a[1] - b[1]; });
     curScores.reverse();
@@ -184,7 +184,7 @@ export function calculateWinner(playerData, playerScores) {
 
     //replace score with contraband goods count, sort
     for (const pAndS of curScores) {
-        pAndS[1] = playerData[pAndS[0]].getContrabandCount();
+        pAndS[1] = playerScores.getContrabandScore(pAndS[0]);
     }
     curScores.sort((a, b) => { return a[1] - b[1]; });
     curScores.reverse();
@@ -223,13 +223,17 @@ export function calculateScores(playerData) {
         temp[player] += kqBonus[player];
     }
 
-    //create a scores object with player scores
+    //create a new score object, set scores, set item counts for each player
     let pScores = new Scores;
-    pScores.setAll(temp);
+    for (const player of Object.keys(playerData)) {
+        pScores.setScore(player, temp[player]);
+        pScores.setLegalScore(player, playerData[player].getLegalCount());
+        pScores.setContrabandScore(player, playerData[player].getContrabandCount());
+    }
+
 
     //calculate and set the winner
-    let winner = calculateWinner(playerData, pScores);
+    let winner = calculateWinner(pScores);
     pScores.setWinner(winner);
-
     return pScores;
 }
