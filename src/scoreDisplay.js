@@ -8,30 +8,41 @@ import Scores from './customClasses'
 function ScoreDisplay(props) {
 
     return (
-        <div>
-            <button onClick={props.onClick}>Calculate Scores</button>
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center"
+        }}>
+            <button onClick={props.onClick} className="submitButton">Calculate Scores</button>
+
             <table
                 style={{
-                    borderStyle: "solid"
+                    borderStyle: "solid",
+                    margin: "20px",
+                    fontSize: "24px",
+                    background: "rgba(255, 255, 255, 0.50)",
+                    borderSpacing: "10px 5px",
+                    tableLayout: "fixed"
                 }}>
                 <tbody>
                     <tr>
-                        <th></th>
+                        <th className="scoreHeader"></th>
 
                         {Constants.playerColors.map((color) => {
                             return (
-                                <th key={color + "scoreheader"}>{color}</th>
+                                <th key={color + "scoreheader"} className="scoreHeader">{color}</th>
                             );
                         })}
 
                         {props.scores.hasWinner() &&
-                            <th>Winner</th>
+                            <th className="scoreHeader">winner</th>
                         }
 
                     </tr>
 
                     <tr>
-                        <td>Scores</td>
+                        <th>Scores</th>
 
                         {Constants.playerColors.map((color) => {
                             return (
@@ -46,7 +57,7 @@ function ScoreDisplay(props) {
                     </tr>
 
                     <tr>
-                        <td>Legal</td>
+                        <th>Legal</th>
 
                         {Constants.playerColors.map((color) => {
                             return (
@@ -61,7 +72,7 @@ function ScoreDisplay(props) {
                     </tr>
 
                     <tr>
-                        <td>Contraband</td>
+                        <th>Contraband</th>
 
                         {Constants.playerColors.map((color) => {
                             return (

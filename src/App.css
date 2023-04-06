@@ -34,4 +34,14 @@ label {
 .radioLabel {
 }
 
+.submitButton {
+    height: 40px;
+    font-size: 22px;
+    background-color: rgb(139,176,73);
+    border-top: 2px;
+    border-bottom: 2px;
+}
 
+.scoreHeader {
+    min-width: 70px;
+}
