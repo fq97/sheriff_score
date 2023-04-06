@@ -95,8 +95,9 @@ export class Scores {
             };
         }
 
-        //add a winner
+        //add a winner, winner set state
         this.winner = "";
+        this.winnerSet = false;
     }
 
     //player score setter
@@ -117,27 +118,47 @@ export class Scores {
     //winner setter
     setWinner(playerColor) {
         this.winner = playerColor;
+        this.winnerSet = true;
     }
 
     //getter for player score
     getScore(playerColor) {
-        return this.playerScores[playerColor].score;
+        if (playerColor == "") {
+            return 0;
+        }
+        else {
+            return this.playerScores[playerColor].score;
+        }
     }
 
     //get player legal count
     getLegalScore(playerColor) {
-        return this.playerScores[playerColor].legal;
+        if (playerColor == "") {
+            return 0;
+        }
+        else {
+            return this.playerScores[playerColor].legal;
+        }
     }
 
     //get player contraband count
     getContrabandScore(playerColor) {
-        return this.playerScores[playerColor].contraband;
+        if (playerColor == "") {
+            return 0;
+        }
+        else {
+            return this.playerScores[playerColor].contraband;
+        }
     }
 
     
     //getter for winner
     getWinner() {
         return this.winner;
+    }
+
+    hasWinner() {
+        return this.winnerSet;
     }
 
     //get players
