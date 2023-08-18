@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sheriff_score/static/css/main.666d8d1c.css",
+    "main.js": "/sheriff_score/static/js/main.93a86dfa.js",
+    "static/js/787.7aefca2a.chunk.js": "/sheriff_score/static/js/787.7aefca2a.chunk.js",
+    "index.html": "/sheriff_score/index.html",
+    "main.666d8d1c.css.map": "/sheriff_score/static/css/main.666d8d1c.css.map",
+    "main.93a86dfa.js.map": "/sheriff_score/static/js/main.93a86dfa.js.map",
+    "787.7aefca2a.chunk.js.map": "/sheriff_score/static/js/787.7aefca2a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.666d8d1c.css",
+    "static/js/main.93a86dfa.js"
+  ]
+}
